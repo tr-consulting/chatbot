@@ -2,36 +2,66 @@
 <html lang="sv">
 <head>
 <meta charset="UTF-8">
-<title>Pizza AI</title>
+<title>Pizzeria AI</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="pizza">
+<body>
 
-<header>
+<nav class="navbar">
+<div class="logo">Pizzeria AI</div>
+
+<div class="menu">
+<a href="index.html">Start</a>
+</div>
+</nav>
+
+<header class="hero-pizza">
+
 <h1>Pizzeria AI</h1>
 <p>Beställ pizza direkt med vår AI</p>
-<a href="index.html">← Tillbaka</a>
+
+<a class="cta" href="#menu">Se menyn</a>
+
 </header>
 
-<section class="menu">
+<section id="menu" class="services">
 
-<h2>Meny</h2>
+<h2>Vår meny</h2>
 
-<div class="pizza-item">
+<div class="grid">
+
+<div class="card">
 <h3>Margherita</h3>
-<p>Tomatsås, mozzarella</p>
+<p>Tomatsås och mozzarella</p>
 </div>
 
-<div class="pizza-item">
+<div class="card">
 <h3>Vesuvio</h3>
-<p>Tomatsås, ost, skinka</p>
+<p>Skinka och ost</p>
 </div>
 
-<div class="pizza-item">
+<div class="card">
 <h3>Kebabpizza</h3>
-<p>Kebab, sallad, vitlökssås</p>
+<p>Kebab, sallad och vitlökssås</p>
 </div>
+
+<div class="card">
+<h3>Capricciosa</h3>
+<p>Skinka och champinjoner</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="info">
+
+<h2>Beställ via AI</h2>
+
+<p>
+Fråga om menyn eller beställ direkt i chatten.
+</p>
 
 </section>
 
@@ -39,7 +69,7 @@
 !function(e,t,n,c,i,a,d){e.m8comContactWidgetName=i,e[i]=e[i]||function(){(e[i].commandQueue=e[i].commandQueue||[]).push(arguments)},e[i].initTs=1*new Date,a=t.createElement(n),d=t.getElementsByTagName(n)[0],a.async=1,a.src=c,a.id=i,d.parentNode.insertBefore(a,d)}
 (window,document,"script","https://m8com.app/webwidget/35481c4a-508d-4f03-a18f-53c5b939022b","m8comContactWidget");
 
-m8comContactWidget('init',{widgetId:'35481c4a-508d-4f03-a18f-53c5b939022b',darkMode:false});
+m8comContactWidget('init',{widgetId:'35481c4a-508d-4f03-a18f-53c5b939022b'});
 </script>
 
 </body>
