@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="page-pizza">
 
 <nav class="navbar">
 <div class="logo">Pizzeria AI</div>
@@ -26,34 +26,99 @@
 
 </header>
 
-<section id="menu" class="services">
+<section class="services">
+<div class="section-shell compact">
+<h2>Menyöversikt</h2>
+<p class="section-lead">Klassiska favoriter, specialpizzor och tillbehör. Perfekt för demo av menyer, tillval och snabba beställningar i chatten.</p>
+<div class="tag-row">
+<span>Vedugnsbakad känsla</span>
+<span>Glutenfria val</span>
+<span>Familjemeny</span>
+<span>Hemkörning</span>
+</div>
+</div>
+</section>
 
+<section id="menu" class="services menu-section">
+<div class="section-shell">
 <h2>Vår meny</h2>
-
-<div class="grid">
-
-<div class="card">
+<div class="menu-categories">
+<article class="menu-card">
 <h3>Margherita</h3>
-<p>Tomatsås och mozzarella</p>
-</div>
-
-<div class="card">
+<p>Tomatsås, mozzarella, basilika.</p>
+<strong>119 kr</strong>
+</article>
+<article class="menu-card">
 <h3>Vesuvio</h3>
-<p>Skinka och ost</p>
-</div>
-
-<div class="card">
-<h3>Kebabpizza</h3>
-<p>Kebab, sallad och vitlökssås</p>
-</div>
-
-<div class="card">
+<p>Tomatsås, ost, skinka.</p>
+<strong>129 kr</strong>
+</article>
+<article class="menu-card">
+<h3>Kebab Special</h3>
+<p>Kebab, rödlök, fefferoni, vitlökssås.</p>
+<strong>145 kr</strong>
+</article>
+<article class="menu-card">
 <h3>Capricciosa</h3>
-<p>Skinka och champinjoner</p>
+<p>Skinka, champinjoner, mozzarella.</p>
+<strong>139 kr</strong>
+</article>
+<article class="menu-card">
+<h3>Vegetariana</h3>
+<p>Paprika, oliver, rödlök, kronärtskocka.</p>
+<strong>142 kr</strong>
+</article>
+<article class="menu-card">
+<h3>Calzone</h3>
+<p>Inbakad pizza med skinka och ost.</p>
+<strong>149 kr</strong>
+</article>
 </div>
-
 </div>
+</section>
 
+<section class="services menu-section alt-surface">
+<div class="section-shell">
+<h2>Populära combo-val</h2>
+<div class="combo-grid">
+<div class="card combo-card">
+<h3>Lunchdeal</h3>
+<p>Valfri klassiker + dryck 33cl.</p>
+<strong>149 kr</strong>
+</div>
+<div class="card combo-card">
+<h3>Familjepaket</h3>
+<p>2 valfria pizzor + 2 dip + 1.5L läsk.</p>
+<strong>369 kr</strong>
+</div>
+<div class="card combo-card">
+<h3>Matchkväll</h3>
+<p>3 pizzor + nachotallrik + 2 dip.</p>
+<strong>499 kr</strong>
+</div>
+</div>
+</div>
+</section>
+
+<section class="services">
+<div class="section-shell two-col-info">
+<div class="info-panel">
+<h2>Öppettider</h2>
+<ul>
+<li>Mån-Fre: 11:00-22:00</li>
+<li>Lör: 12:00-23:00</li>
+<li>Sön: 12:00-21:00</li>
+</ul>
+</div>
+<div class="info-panel">
+<h2>Leverans</h2>
+<ul>
+<li>0-3 km: 29 kr</li>
+<li>3-7 km: 49 kr</li>
+<li>Över 7 km: enligt överenskommelse</li>
+</ul>
+</div>
+</div>
 </section>
 
 <section class="info">
@@ -61,8 +126,14 @@
 <h2>Beställ via AI</h2>
 
 <p>
-Fråga om menyn eller beställ direkt i chatten.
+Skriv vad du är sugen på, antal, tillval och leveransadress. AI-agenten guidar dig hela vägen till färdig beställning.
 </p>
+
+<div class="steps">
+<div class="step-item"><span>1</span><p>Välj pizza eller combo</p></div>
+<div class="step-item"><span>2</span><p>Lägg till tillval och dryck</p></div>
+<div class="step-item"><span>3</span><p>Bekräfta tid för upphämtning/leverans</p></div>
+</div>
 
 </section>
 
