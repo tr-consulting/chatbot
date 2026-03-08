@@ -177,3 +177,23 @@ padding:60px 20px;
 text-align:center;
 
 }
+/* Hide original icon */
+.rzhe4m svg{
+display:none;
+}
+
+/* Show pizza emoji instead */
+.rzhe4m::after{
+
+content:"🍕";
+
+font-size:22px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:100%;
+height:100%;
+
+}
