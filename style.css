@@ -70,6 +70,24 @@ a {
   letter-spacing: 0.02em;
 }
 
+.logo-with-mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team8-logo {
+  width: 116px;
+  height: auto;
+  display: block;
+}
+
+.hero-team8-logo {
+  width: min(170px, 44vw);
+  margin: 0 auto 16px;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.25));
+}
+
 .navbar a {
   color: #fff;
   text-decoration: none;
@@ -276,6 +294,11 @@ a {
 
 .section-shell.compact {
   text-align: center;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 18px;
+  box-shadow: 0 10px 22px rgba(16, 24, 40, 0.08);
 }
 
 .section-lead {
@@ -302,14 +325,14 @@ a {
 }
 
 .menu-section {
-  padding-top: 20px;
+  padding-top: 8px;
 }
 
 .menu-categories {
-  margin-top: 22px;
+  margin-top: 14px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
 .menu-card {
@@ -341,10 +364,10 @@ a {
 }
 
 .combo-grid {
-  margin-top: 22px;
+  margin-top: 14px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
 .combo-card strong {
@@ -356,7 +379,7 @@ a {
 .two-col-info {
   display: grid;
   grid-template-columns: repeat(2, minmax(260px, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
 .info-panel {
@@ -379,11 +402,19 @@ a {
 }
 
 .steps {
-  margin: 24px auto 0;
+  margin: 18px auto 0;
   max-width: 820px;
   display: grid;
   grid-template-columns: repeat(3, minmax(160px, 1fr));
-  gap: 14px;
+  gap: 12px;
+}
+
+.page-pizza .services {
+  padding: 46px 20px;
+}
+
+.page-pizza .info {
+  padding: 54px 20px;
 }
 
 .step-item {
@@ -432,6 +463,19 @@ a {
   .services,
   .info {
     padding: 52px 16px;
+  }
+
+  .logo-with-mark span {
+    display: none;
+  }
+
+  .team8-logo {
+    width: 94px;
+  }
+
+  .page-pizza .services,
+  .page-pizza .info {
+    padding: 36px 16px;
   }
 
   .landing-card,
