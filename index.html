@@ -1,31 +1,41 @@
 <style>
-/* First chat */
-.kobra {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
+/* Position for first widget */
+.m8-widget-1 {
+  bottom: 20px !important;
+  right: 20px !important;
 }
 
-/* Second chat */
-.pizza-1 {
-  position: fixed;
-  bottom: 100px; /* moves it above the first chat */
-  right: 20px;
-  z-index: 9999;
+/* Position for second widget */
+.m8-widget-2 {
+  bottom: 100px !important;
+  right: 20px !important;
 }
 </style>
 
-<h1>Hello World!!</h1>
-<div class="kobra">
 <script type="text/javascript">
-!function(e,t,n,c,i,a,d){e.m8comContactWidgetName=i,e[i]=e[i]||function(){(e[i].commandQueue=e[i].commandQueue||[]).push(arguments)},e[i].initTs=1*new Date,a=t.createElement(n),d=t.getElementsByTagName(n)[0],a.async=1,a.src=c,a.id=i,d.parentNode.insertBefore(a,d)}(window,document,"script","https://m8com.app/webwidget/87822488-3d77-4013-9bde-01639ddb0f65","m8comContactWidget");
-  m8comContactWidget('init', { widgetId: '87822488-3d77-4013-9bde-01639ddb0f65', darkMode: false });
+!function(e,t,n,c,i,a,d){
+  e.m8comContactWidgetName=i;
+  e[i]=e[i]||function(){
+    (e[i].commandQueue=e[i].commandQueue||[]).push(arguments)
+  };
+  e[i].initTs=1*new Date;
+  a=t.createElement(n);
+  d=t.getElementsByTagName(n)[0];
+  a.async=1;
+  a.src=c;
+  a.id=i;
+  d.parentNode.insertBefore(a,d)
+}(window,document,"script","https://m8com.app/webwidget/87822488-3d77-4013-9bde-01639ddb0f65","m8comContactWidget");
+
+/* Init widget 1 */
+m8comContactWidget('init', { 
+  widgetId: '87822488-3d77-4013-9bde-01639ddb0f65',
+  darkMode: false
+});
+
+/* Init widget 2 */
+m8comContactWidget('init', { 
+  widgetId: '35481c4a-508d-4f03-a18f-53c5b939022b',
+  darkMode: false
+});
 </script>
-</div>
-<div class="pizza-1">
-<script type="text/javascript">
-!function(e,t,n,c,i,a,d){e.m8comContactWidgetName=i,e[i]=e[i]||function(){(e[i].commandQueue=e[i].commandQueue||[]).push(arguments)},e[i].initTs=1*new Date,a=t.createElement(n),d=t.getElementsByTagName(n)[0],a.async=1,a.src=c,a.id=i,d.parentNode.insertBefore(a,d)}(window,document,"script","https://m8com.app/webwidget/35481c4a-508d-4f03-a18f-53c5b939022b","m8comContactWidget");
-  m8comContactWidget('init', { widgetId: '35481c4a-508d-4f03-a18f-53c5b939022b', darkMode: false });
-</script>
-</div>
