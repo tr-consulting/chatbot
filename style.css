@@ -417,6 +417,24 @@ a {
   padding: 54px 20px;
 }
 
+.page-kobra .services {
+  padding: 48px 20px;
+}
+
+.page-kobra .info {
+  padding: 56px 20px;
+}
+
+.kobra-section .grid,
+.kobra-section .combo-grid,
+.kobra-section .two-col-info {
+  margin-top: 14px;
+}
+
+.kobra-info {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f9fd 100%);
+}
+
 .step-item {
   background: #f8faff;
   border: 1px solid var(--border);
@@ -475,6 +493,11 @@ a {
 
   .page-pizza .services,
   .page-pizza .info {
+    padding: 36px 16px;
+  }
+
+  .page-kobra .services,
+  .page-kobra .info {
     padding: 36px 16px;
   }
 
