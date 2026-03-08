@@ -1,27 +1,30 @@
-<style>
-/* move second widget higher */
-#widget2 iframe {
-  bottom: 100px !important;
-}
-</style>
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Testa våra AI-agenter</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-<script>
-/* FIRST WIDGET */
-!function(e,t,n,c,i,a,d){
-e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)};
-a=t.createElement(n);d=t.getElementsByTagName(n)[0];
-a.async=1;a.src=c;a.id=i;d.parentNode.insertBefore(a,d)
-}(window,document,"script","https://m8com.app/webwidget/87822488-3d77-4013-9bde-01639ddb0f65","m8widget1");
+<body class="landing">
 
-m8widget1('init',{widgetId:'87822488-3d77-4013-9bde-01639ddb0f65',darkMode:false});
+<h1>Testa våra AI-agenter</h1>
 
+<div class="cards">
 
-/* SECOND WIDGET */
-!function(e,t,n,c,i,a,d){
-e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)};
-a=t.createElement(n);d=t.getElementsByTagName(n)[0];
-a.async=1;a.src=c;a.id=i;d.parentNode.insertBefore(a,d)
-}(window,document,"script","https://m8com.app/webwidget/35481c4a-508d-4f03-a18f-53c5b939022b","m8widget2");
+<a href="kobra.html" class="card">
+<h2>🔧 Kobra Kaj</h2>
+<p>Bilverkstadens bästa AI-agent</p>
+<p>Boka service, felsök bilen eller fråga om reservdelar.</p>
+</a>
 
-m8widget2('init',{widgetId:'35481c4a-508d-4f03-a18f-53c5b939022b',darkMode:false});
-</script>
+<a href="pizza.html" class="card">
+<h2>🍕 Pizza Agent</h2>
+<p>Beställ pizza med AI</p>
+<p>Fråga om menyn eller lägg en beställning direkt.</p>
+</a>
+
+</div>
+
+</body>
+</html>
