@@ -437,8 +437,8 @@ a {
 
 .kobra-chat-layout {
   display: grid;
-  grid-template-columns: 1.7fr 1fr;
-  gap: 16px;
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: start;
 }
 
@@ -475,6 +475,16 @@ a {
   border-top: 1px solid var(--border);
 }
 
+.floating-test-customers {
+  position: fixed;
+  right: 340px;
+  bottom: 24px;
+  width: 280px;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(4px);
+}
+
 .step-item {
   background: #f8faff;
   border: 1px solid var(--border);
@@ -507,6 +517,10 @@ a {
 
   .kobra-chat-layout {
     grid-template-columns: 1fr;
+  }
+
+  .floating-test-customers {
+    display: none;
   }
 }
 
