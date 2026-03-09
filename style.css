@@ -477,7 +477,7 @@ a {
 
 .floating-test-customers {
   position: fixed;
-  right: var(--kobra-float-right, 340px);
+  right: var(--kobra-float-right, 420px);
   bottom: 24px;
   width: 280px;
   z-index: 20;
