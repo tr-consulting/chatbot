@@ -484,6 +484,19 @@ a {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(4px);
   transition: right 220ms ease;
+  opacity: var(--kobra-float-visible, 0);
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    right 220ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.floating-test-customers.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .step-item {
