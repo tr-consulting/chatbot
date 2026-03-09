@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T8 - Kobra Kaj</title>
-<link rel="stylesheet" href="style.css?v=20260309-3">
+<link rel="stylesheet" href="style.css?v=20260309-4">
 </head>
 
 <body class="page-kobra">
@@ -210,15 +210,15 @@ m8comContactWidget('init',{widgetId:'87822488-3d77-4013-9bde-01639ddb0f65'});
 
 // Keep the floating test-customer panel clear of the chat widget when it expands.
 (function () {
-  var minOffset = 340;
-  var gap = 24;
+  var minOffset = 420;
+  var gap = 28;
   var root = document.documentElement;
 
   function updateFloatingOffset() {
     var vw = window.innerWidth;
     var vh = window.innerHeight;
     var maxChatOffset = 0;
-    var nodes = document.querySelectorAll('iframe, [style*="position: fixed"], [style*="position:fixed"]');
+    var nodes = document.querySelectorAll('iframe, *');
 
     for (var i = 0; i < nodes.length; i += 1) {
       var node = nodes[i];
@@ -227,22 +227,23 @@ m8comContactWidget('init',{widgetId:'87822488-3d77-4013-9bde-01639ddb0f65'});
       }
 
       var rect = node.getBoundingClientRect();
-      if (rect.width < 40 || rect.height < 40) {
+      if (rect.width < 48 || rect.height < 48) {
         continue;
       }
 
       var style = window.getComputedStyle(node);
-      if (style.position !== 'fixed') {
+      var isFloating = style.position === 'fixed' || style.position === 'absolute' || node.tagName === 'IFRAME';
+      if (!isFloating) {
         continue;
       }
 
-      // Focus only on bottom-right floating UI (where the chat widget lives).
-      if (rect.right < vw - 8 || rect.bottom < vh - 8) {
+      // Focus on lower-right UI region where the chat widget launcher/panel lives.
+      if (rect.left < vw * 0.58 || rect.top < vh * 0.42) {
         continue;
       }
 
       var z = parseInt(style.zIndex || '0', 10);
-      if (!Number.isFinite(z) || z < 10) {
+      if (Number.isFinite(z) && z < 1) {
         continue;
       }
 
