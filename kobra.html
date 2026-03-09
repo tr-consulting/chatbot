@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T8 - Kobra Kaj</title>
-<link rel="stylesheet" href="style.css?v=20260309-2">
+<link rel="stylesheet" href="style.css?v=20260309-3">
 </head>
 
 <body class="page-kobra">
@@ -207,6 +207,65 @@
 (window,document,"script","https://m8com.app/webwidget/87822488-3d77-4013-9bde-01639ddb0f65","m8comContactWidget");
 
 m8comContactWidget('init',{widgetId:'87822488-3d77-4013-9bde-01639ddb0f65'});
+
+// Keep the floating test-customer panel clear of the chat widget when it expands.
+(function () {
+  var minOffset = 340;
+  var gap = 24;
+  var root = document.documentElement;
+
+  function updateFloatingOffset() {
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var maxChatOffset = 0;
+    var nodes = document.querySelectorAll('iframe, [style*="position: fixed"], [style*="position:fixed"]');
+
+    for (var i = 0; i < nodes.length; i += 1) {
+      var node = nodes[i];
+      if (node.classList && node.classList.contains('floating-test-customers')) {
+        continue;
+      }
+
+      var rect = node.getBoundingClientRect();
+      if (rect.width < 40 || rect.height < 40) {
+        continue;
+      }
+
+      var style = window.getComputedStyle(node);
+      if (style.position !== 'fixed') {
+        continue;
+      }
+
+      // Focus only on bottom-right floating UI (where the chat widget lives).
+      if (rect.right < vw - 8 || rect.bottom < vh - 8) {
+        continue;
+      }
+
+      var z = parseInt(style.zIndex || '0', 10);
+      if (!Number.isFinite(z) || z < 10) {
+        continue;
+      }
+
+      var offsetFromRight = vw - rect.left;
+      if (offsetFromRight > maxChatOffset) {
+        maxChatOffset = offsetFromRight;
+      }
+    }
+
+    var applied = Math.max(minOffset, Math.round(maxChatOffset + gap));
+    root.style.setProperty('--kobra-float-right', applied + 'px');
+  }
+
+  var observer = new MutationObserver(function () {
+    window.requestAnimationFrame(updateFloatingOffset);
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
+  window.addEventListener('resize', updateFloatingOffset);
+  window.setInterval(updateFloatingOffset, 700);
+  window.setTimeout(updateFloatingOffset, 300);
+  updateFloatingOffset();
+})();
 </script>
 
 </body>
