@@ -435,6 +435,46 @@ a {
   background: linear-gradient(180deg, #ffffff 0%, #f7f9fd 100%);
 }
 
+.kobra-chat-layout {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.kobra-chat-copy h2 {
+  text-align: left;
+}
+
+.kobra-chat-copy p {
+  margin-top: 10px;
+}
+
+.kobra-chat-copy .steps {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+
+.kobra-test-customers h2 {
+  text-align: left;
+}
+
+.kobra-test-customers p {
+  margin-top: 8px;
+}
+
+.kobra-test-customers ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.kobra-test-customers li {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
 .step-item {
   background: #f8faff;
   border: 1px solid var(--border);
@@ -462,6 +502,10 @@ a {
   }
 
   .landing-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .kobra-chat-layout {
     grid-template-columns: 1fr;
   }
 }
