@@ -477,12 +477,13 @@ a {
 
 .floating-test-customers {
   position: fixed;
-  right: 340px;
+  right: var(--kobra-float-right, 340px);
   bottom: 24px;
   width: 280px;
   z-index: 20;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(4px);
+  transition: right 220ms ease;
 }
 
 .step-item {
