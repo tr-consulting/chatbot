@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T8 - Kobra Kaj</title>
-<link rel="stylesheet" href="style.css?v=20260309-5">
+<link rel="stylesheet" href="style.css?v=20260309-7">
 </head>
 
 <body class="page-kobra">
@@ -208,72 +208,92 @@
 
 m8comContactWidget('init',{widgetId:'87822488-3d77-4013-9bde-01639ddb0f65'});
 
-// Keep the floating test-customer panel clear of the chat widget when it expands.
+// Show test panel only when the chat widget appears expanded.
 (function () {
   var minOffset = 420;
   var gap = 28;
   var root = document.documentElement;
   var panel = document.querySelector('.floating-test-customers');
 
-  function updateFloatingOffset() {
+  function allElements(rootNode, acc) {
+    var nodes = rootNode.querySelectorAll('*');
+    for (var i = 0; i < nodes.length; i += 1) {
+      var n = nodes[i];
+      acc.push(n);
+      if (n.shadowRoot) {
+        allElements(n.shadowRoot, acc);
+      }
+    }
+  }
+
+  function isFloatingContext(el) {
+    if (el.tagName === 'IFRAME') {
+      return true;
+    }
+    var style = window.getComputedStyle(el);
+    if (style.position === 'fixed' || style.position === 'absolute' || style.position === 'sticky') {
+      return true;
+    }
+    return false;
+  }
+
+  function updateFloatingPanel() {
     var vw = window.innerWidth;
     var vh = window.innerHeight;
-    var maxChatOffset = 0;
-    var nodes = document.querySelectorAll('iframe, *');
+    var items = [];
+    allElements(document, items);
 
-    for (var i = 0; i < nodes.length; i += 1) {
-      var node = nodes[i];
-      if (node.classList && node.classList.contains('floating-test-customers')) {
+    var maxWidth = 0;
+    var maxOffsetFromRight = 0;
+
+    for (var i = 0; i < items.length; i += 1) {
+      var node = items[i];
+      if (!isFloatingContext(node)) {
+        continue;
+      }
+      if (panel && node === panel) {
         continue;
       }
 
-      var rect = node.getBoundingClientRect();
-      if (rect.width < 48 || rect.height < 48) {
+      var r = node.getBoundingClientRect();
+      if (r.width < 40 || r.height < 40) {
+        continue;
+      }
+      if (r.right < vw - 80 || r.bottom < vh - 80) {
+        continue;
+      }
+      if (r.left < vw * 0.55) {
         continue;
       }
 
-      var style = window.getComputedStyle(node);
-      var isFloating = style.position === 'fixed' || style.position === 'absolute' || node.tagName === 'IFRAME';
-      if (!isFloating) {
-        continue;
+      if (r.width > maxWidth) {
+        maxWidth = r.width;
       }
 
-      // Focus on lower-right UI region where the chat widget launcher/panel lives.
-      if (rect.left < vw * 0.58 || rect.top < vh * 0.42) {
-        continue;
-      }
-
-      var z = parseInt(style.zIndex || '0', 10);
-      if (Number.isFinite(z) && z < 1) {
-        continue;
-      }
-
-      var offsetFromRight = vw - rect.left;
-      if (offsetFromRight > maxChatOffset) {
-        maxChatOffset = offsetFromRight;
+      var off = vw - r.left;
+      if (off > maxOffsetFromRight) {
+        maxOffsetFromRight = off;
       }
     }
 
-    var applied = Math.max(minOffset, Math.round(maxChatOffset + gap));
-    root.style.setProperty('--kobra-float-right', applied + 'px');
+    var expanded = maxWidth >= 220;
+    var appliedRight = Math.max(minOffset, Math.round(maxOffsetFromRight + gap));
+    root.style.setProperty('--kobra-float-right', appliedRight + 'px');
 
-    // Show panel only when the chat is likely expanded (not only launcher icon).
-    var expanded = maxChatOffset > 280;
-    root.style.setProperty('--kobra-float-visible', expanded ? '1' : '0');
     if (panel) {
       panel.classList.toggle('is-visible', expanded);
     }
   }
 
   var observer = new MutationObserver(function () {
-    window.requestAnimationFrame(updateFloatingOffset);
+    window.requestAnimationFrame(updateFloatingPanel);
   });
 
-  observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
-  window.addEventListener('resize', updateFloatingOffset);
-  window.setInterval(updateFloatingOffset, 700);
-  window.setTimeout(updateFloatingOffset, 300);
-  updateFloatingOffset();
+  observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+  window.addEventListener('resize', updateFloatingPanel);
+  window.setInterval(updateFloatingPanel, 600);
+  window.setTimeout(updateFloatingPanel, 350);
+  updateFloatingPanel();
 })();
 </script>
 
