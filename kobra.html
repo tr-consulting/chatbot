@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T8 - Kobra Kaj</title>
-<link rel="stylesheet" href="style.css?v=20260309-4">
+<link rel="stylesheet" href="style.css?v=20260309-5">
 </head>
 
 <body class="page-kobra">
@@ -213,6 +213,7 @@ m8comContactWidget('init',{widgetId:'87822488-3d77-4013-9bde-01639ddb0f65'});
   var minOffset = 420;
   var gap = 28;
   var root = document.documentElement;
+  var panel = document.querySelector('.floating-test-customers');
 
   function updateFloatingOffset() {
     var vw = window.innerWidth;
@@ -255,6 +256,13 @@ m8comContactWidget('init',{widgetId:'87822488-3d77-4013-9bde-01639ddb0f65'});
 
     var applied = Math.max(minOffset, Math.round(maxChatOffset + gap));
     root.style.setProperty('--kobra-float-right', applied + 'px');
+
+    // Show panel only when the chat is likely expanded (not only launcher icon).
+    var expanded = maxChatOffset > 280;
+    root.style.setProperty('--kobra-float-visible', expanded ? '1' : '0');
+    if (panel) {
+      panel.classList.toggle('is-visible', expanded);
+    }
   }
 
   var observer = new MutationObserver(function () {
