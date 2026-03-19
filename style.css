@@ -517,6 +517,240 @@ a {
     linear-gradient(180deg, #ffffff 0%, #f6f9fd 100%);
 }
 
+.sportsbar-live-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+}
+
+.sportsbar-live-copy {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.api-status {
+  min-width: 220px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-weight: 700;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(16, 24, 40, 0.08);
+}
+
+.api-status-pending {
+  color: var(--ink);
+}
+
+.api-status-online {
+  color: #0f7b48;
+  background: #edf9f2;
+  border-color: #bbe7cb;
+}
+
+.api-status-offline {
+  color: #9a2f44;
+  background: #fff1f4;
+  border-color: #f7c2cf;
+}
+
+.sportsbar-live-grid,
+.sportsbar-booking-shell {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 18px;
+}
+
+.live-panel,
+.booking-panel {
+  min-height: 100%;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.panel-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(242, 65, 98, 0.12);
+  color: var(--accent-strong);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.table-wrap {
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+.live-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.live-table th,
+.live-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.live-table th {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.live-table td strong {
+  color: var(--ink);
+}
+
+.table-empty,
+.availability-empty {
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.availability-list {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.availability-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+}
+
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 74px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(242, 65, 98, 0.1);
+  color: var(--accent-strong);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.availability-meta strong {
+  display: block;
+  color: var(--ink);
+}
+
+.availability-meta span {
+  color: var(--ink-soft);
+}
+
+.availability-time {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.booking-form {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.booking-form label {
+  display: block;
+}
+
+.booking-form span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  outline: 3px solid rgba(242, 65, 98, 0.16);
+  border-color: var(--accent);
+}
+
+.booking-form-full {
+  grid-column: 1 / -1;
+}
+
+.booking-submit {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.booking-message {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f7f9fd;
+  color: var(--ink);
+}
+
+.booking-message.is-success {
+  background: #edf9f2;
+  color: #0f7b48;
+}
+
+.booking-message.is-error {
+  background: #fff1f4;
+  color: #9a2f44;
+}
+
+.booking-side-list {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+}
+
+.booking-side-list li {
+  margin-top: 8px;
+}
+
+.booking-code {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #18202b;
+  color: #fff;
+  overflow-x: auto;
+}
+
 .kobra-section .grid,
 .kobra-section .combo-grid,
 .kobra-section .two-col-info {
@@ -626,6 +860,12 @@ a {
   .floating-test-customers {
     display: none;
   }
+
+  .sportsbar-live-header,
+  .sportsbar-live-grid,
+  .sportsbar-booking-shell {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -638,6 +878,13 @@ a {
 
   .two-col-info,
   .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-form,
+  .sportsbar-live-grid,
+  .sportsbar-booking-shell,
+  .sportsbar-live-header {
     grid-template-columns: 1fr;
   }
 
@@ -671,6 +918,11 @@ a {
 
   .sportsbar-rules {
     grid-template-columns: 1fr;
+  }
+
+  .availability-card {
+    grid-template-columns: 1fr;
+    align-items: start;
   }
 
   .landing-card,
