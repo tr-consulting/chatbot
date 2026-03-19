@@ -149,6 +149,13 @@ async function fetchFromSheetFallback() {
 
   renderBookings(bookings);
   renderAvailability(slots, resourceMap);
+
+  if (!localApiOnline) {
+    apiStatus.textContent = "Google Sheet live • bokning kräver backend";
+    apiStatus.className = "api-status api-status-online";
+    bookingMessage.textContent = "Arket går att läsa från GitHub Pages. Formuläret behöver fortfarande backend för att skriva bokningar.";
+    bookingMessage.className = "booking-message";
+  }
 }
 
 async function fetchBookingsAndAvailability() {
