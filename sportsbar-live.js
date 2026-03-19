@@ -10,6 +10,7 @@ const bookingsCount = document.getElementById("bookingsCount");
 const availabilityCards = document.getElementById("availabilityCards");
 const availabilityCount = document.getElementById("availabilityCount");
 const apiStatus = document.getElementById("apiStatus");
+const refreshBookingsButton = document.getElementById("refreshBookingsButton");
 
 const resourceTypeLabels = {
   table: "Bord",
@@ -115,6 +116,15 @@ async function loadPublishedCsv(sheetName) {
   });
 }
 
+function setRefreshingState(isRefreshing) {
+  if (!refreshBookingsButton) {
+    return;
+  }
+
+  refreshBookingsButton.disabled = isRefreshing;
+  refreshBookingsButton.textContent = isRefreshing ? "Uppdaterar..." : "Uppdatera listan";
+}
+
 async function fetchLiveData() {
   const [bookings, resources, slots] = await Promise.all([
     loadPublishedCsv("Bookings"),
@@ -156,6 +166,8 @@ async function fetchLiveData() {
 }
 
 async function fetchBookingsAndAvailability() {
+  setRefreshingState(true);
+
   try {
     await fetchLiveData();
   } catch (error) {
@@ -165,6 +177,8 @@ async function fetchBookingsAndAvailability() {
     availabilityCards.innerHTML = `<div class="availability-empty">${escapeHtml(error.message)}</div>`;
     apiStatus.textContent = "Kunde inte läsa live-data";
     apiStatus.className = "api-status api-status-offline";
+  } finally {
+    setRefreshingState(false);
   }
 }
 
@@ -210,3 +224,5 @@ function renderAvailability(slots, resourceMap = null) {
   }).join("");
 }
 fetchBookingsAndAvailability();
+
+refreshBookingsButton?.addEventListener("click", fetchBookingsAndAvailability);
