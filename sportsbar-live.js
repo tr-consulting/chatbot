@@ -1,5 +1,11 @@
 const SHEET_ID = "1Oj95Oe9hMRYjgDzuuYewC_ti51nh0FO91WRUNjMvspk";
+const PUBLISHED_SHEET_ID = "2PACX-1vReA5CqHPI2DyCHXX1v77_VeWIMsCCq66v-uw0Cdkq7lSyYEXSMRDHmY8TEMruKcdZFAJ_vT5mqIn2S";
 const LOCAL_API_BASE = "http://127.0.0.1:8787";
+const PUBLISHED_GIDS = {
+  Resources: "1396278763",
+  Slots: "492074727",
+  Bookings: "2097606553",
+};
 
 const bookingsTableBody = document.getElementById("bookingsTableBody");
 const bookingsCount = document.getElementById("bookingsCount");
@@ -45,6 +51,80 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+function parseCsv(text) {
+  const rows = [];
+  let current = "";
+  let row = [];
+  let inQuotes = false;
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    const next = text[index + 1];
+
+    if (char === '"') {
+      if (inQuotes && next === '"') {
+        current += '"';
+        index += 1;
+      } else {
+        inQuotes = !inQuotes;
+      }
+      continue;
+    }
+
+    if (char === "," && !inQuotes) {
+      row.push(current);
+      current = "";
+      continue;
+    }
+
+    if ((char === "\n" || char === "\r") && !inQuotes) {
+      if (char === "\r" && next === "\n") {
+        index += 1;
+      }
+      row.push(current);
+      if (row.some((cell) => cell !== "")) {
+        rows.push(row);
+      }
+      row = [];
+      current = "";
+      continue;
+    }
+
+    current += char;
+  }
+
+  row.push(current);
+  if (row.some((cell) => cell !== "")) {
+    rows.push(row);
+  }
+
+  return rows;
+}
+
+async function loadPublishedCsv(sheetName) {
+  const gid = PUBLISHED_GIDS[sheetName];
+  const url = `https://docs.google.com/spreadsheets/d/e/${PUBLISHED_SHEET_ID}/pub?gid=${gid}&single=true&output=csv`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Kunde inte läsa publicerad CSV för ${sheetName}`);
+  }
+
+  const csv = await response.text();
+  const rows = parseCsv(csv);
+  if (!rows.length) {
+    return [];
+  }
+
+  const [header, ...body] = rows;
+  return body.map((row) => {
+    const item = {};
+    header.forEach((column, index) => {
+      item[column] = row[index] ?? "";
+    });
+    return item;
+  });
 }
 
 function parseGvizTable(table) {
@@ -138,17 +218,39 @@ async function fetchFromLocalApi() {
 
 async function fetchFromSheetFallback() {
   const [bookings, resources, slots] = await Promise.all([
-    loadSheet("Bookings", "select C, F, I, J, L, K where K = 'confirmed' order by I asc, J asc limit 12"),
-    loadSheet("Resources", "select A, B, C, D where E = 'TRUE'"),
-    loadSheet("Slots", "select B, C, D, E, F, G, H where F = 'available' order by C asc, D asc limit 18"),
+    loadPublishedCsv("Bookings"),
+    loadPublishedCsv("Resources"),
+    loadPublishedCsv("Slots"),
   ]);
 
-  const resourceMap = new Map(
-    resources.map((resource) => [resource.resource_id, resource.name]),
-  );
+  const resourceMap = new Map(resources.map((resource) => [resource.resource_id, resource.name]));
+  const confirmedBookings = bookings
+    .filter((booking) => booking.status === "confirmed")
+    .sort((left, right) => `${left.date} ${left.start_time}`.localeCompare(`${right.date} ${right.start_time}`))
+    .slice(0, 12)
+    .map((booking) => ({
+      customer_name: booking.customer_name,
+      booking_type: booking.booking_type,
+      date: booking.date,
+      start_time: booking.start_time,
+      notes: booking.notes,
+    }));
 
-  renderBookings(bookings);
-  renderAvailability(slots, resourceMap);
+  const availableSlots = slots
+    .filter((slot) => slot.status === "available")
+    .sort((left, right) => `${left.date} ${left.start_time}`.localeCompare(`${right.date} ${right.start_time}`))
+    .slice(0, 18)
+    .map((slot) => ({
+      resource_id: slot.resource_id,
+      booking_type: slot.booking_type,
+      date: slot.date,
+      start_time: slot.start_time,
+      end_time: slot.end_time,
+      party_size_max: slot.party_size_max,
+    }));
+
+  renderBookings(confirmedBookings);
+  renderAvailability(availableSlots, resourceMap);
 
   if (!localApiOnline) {
     apiStatus.textContent = "Google Sheet live • bokning kräver backend";
