@@ -524,6 +524,42 @@ a {
   gap: 18px;
 }
 
+.sportsbar-live-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.refresh-button {
+  border: 1px solid rgba(242, 65, 98, 0.24);
+  background: #fff;
+  color: var(--accent-strong);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(16, 24, 40, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.refresh-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(16, 24, 40, 0.12);
+}
+
+.refresh-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.refresh-button:focus-visible {
+  outline: 3px solid #ffd37a;
+  outline-offset: 3px;
+}
+
 .sportsbar-live-copy {
   margin-left: 0;
   margin-right: 0;
