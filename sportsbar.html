@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T8 - Sportsbar pAI!</title>
-<link rel="stylesheet" href="style.css?v=20260319-2">
+<link rel="stylesheet" href="style.css?v=20260319-3">
 </head>
 
 <body class="page-sportsbar">
@@ -238,9 +238,9 @@
 <div class="sportsbar-live-header">
 <div>
 <h2>Livebokningar från Halmstad</h2>
-<p class="section-lead sportsbar-live-copy">Bokningar hämtas från Google Sheetet i realtid när sidan laddas. När det lokala demo-API:t är igång kan sidan även skapa nya bokningar och blockera tider direkt.</p>
+<p class="section-lead sportsbar-live-copy">Bokningar och lediga tider hämtas från vår demo-källa i realtid. Assistenten nere till höger hjälper gästen att boka bord och aktiviteter.</p>
 </div>
-<div id="apiStatus" class="api-status api-status-pending">Kontrollerar demo-API...</div>
+<div id="apiStatus" class="api-status api-status-pending">Laddar bokningsdata...</div>
 </div>
 
 <div class="sportsbar-live-grid">
@@ -254,6 +254,7 @@
 <thead>
 <tr>
 <th>Namn</th>
+<th>Gäster</th>
 <th>Typ</th>
 <th>Datum</th>
 <th>Tid</th>
@@ -261,7 +262,7 @@
 </tr>
 </thead>
 <tbody id="bookingsTableBody">
-<tr><td colspan="5" class="table-empty">Hämtar bokningar...</td></tr>
+<tr><td colspan="6" class="table-empty">Hämtar bokningar...</td></tr>
 </tbody>
 </table>
 </div>
@@ -282,67 +283,38 @@
 
 <section class="services sportsbar-section">
 <div class="section-shell">
-<div class="sportsbar-booking-shell">
-<div class="info-panel booking-panel">
-<h2>Demo: boka direkt mot arket</h2>
-<p>Den här panelen använder ett lokalt API på din dator som skriver till Google Sheetet och markerar slotten som bokad.</p>
-<form id="bookingForm" class="booking-form">
-<label>
-<span>Namn</span>
-<input name="customer_name" type="text" value="Demo-gäst" required>
-</label>
-<label>
-<span>Telefon</span>
-<input name="phone" type="tel" value="0701231234" required>
-</label>
-<label>
-<span>Antal personer</span>
-<input name="party_size" type="number" min="1" max="12" value="4" required>
-</label>
-<label>
-<span>Bokningstyp</span>
-<select name="booking_type">
-<option value="table">Bord</option>
-<option value="bowling">Bowling</option>
-<option value="shuffleboard">Shuffleboard</option>
-<option value="dart">Dart</option>
-<option value="billiard">Biljard</option>
-<option value="karaoke">Karaoke</option>
-</select>
-</label>
-<label>
-<span>Datum</span>
-<input id="bookingDate" name="date" type="date" required>
-</label>
-<label>
-<span>Starttid</span>
-<input name="start_time" type="time" value="18:00" required>
-</label>
-<label class="booking-form-full">
-<span>Notis</span>
-<input name="notes" type="text" value="Bokad via Team8 sportbar-demo">
-</label>
-<button class="cta booking-submit" type="submit">Skapa bokning</button>
-</form>
-<p id="bookingMessage" class="booking-message">Starta det lokala API:t för att aktivera skrivläget.</p>
-</div>
-
+<div class="sportsbar-booking-shell sportsbar-assistant-shell">
 <div class="info-panel booking-panel booking-panel-side">
-<h2>Så demon beter sig</h2>
+<h2>Så demonstrationen fungerar</h2>
 <ul class="booking-side-list">
 <li>Agenten läser lediga slots från fliken <strong>Slots</strong>.</li>
 <li>När en bokning skapas skrivs den till <strong>Bookings</strong>.</li>
 <li>Samma slot uppdateras från <strong>available</strong> till <strong>booked</strong>.</li>
 <li>Efter bokning laddas listorna om, så tiden försvinner från “Lediga tider”.</li>
-<li>Om det lokala API:t inte körs visas arket fortfarande i read-only-läge.</li>
+<li>Agenten hjälper till med bord, bowling, shuffleboard, dart, biljard och karaoke.</li>
  </ul>
-<pre class="booking-code">python3 scripts/sportsbar_booking_api.py</pre>
+</div>
+
+<div class="info-panel booking-panel assistant-panel">
+<h2>Prata med agenten</h2>
+<p>Använd assistenten nere till höger för att boka bord, aktiviteter och få förslag på passande tider för ditt sällskap.</p>
+<div class="tag-row assistant-tags">
+<span>Bord</span>
+<span>Bowling</span>
+<span>Shuffleboard</span>
+<span>Karaoke</span>
+<span>After Work</span>
+</div>
 </div>
 </div>
 </div>
 </section>
 
 <script src="sportsbar-live.js"></script>
+<script type="text/javascript">
+!function(e,t,n,c,i,a,d){e.m8comContactWidgetName=i,e[i]=e[i]||function(){(e[i].commandQueue=e[i].commandQueue||[]).push(arguments)},e[i].initTs=1*new Date,a=t.createElement(n),d=t.getElementsByTagName(n)[0],a.async=1,a.src=c,a.id=i,d.parentNode.insertBefore(a,d)}(window,document,"script","https://m8com.app/webwidget/0b0914cf-2393-40e8-89c7-b319af19d0cf","m8comContactWidget");
+  m8comContactWidget('init', { widgetId: '0b0914cf-2393-40e8-89c7-b319af19d0cf', darkMode: false });
+</script>
 
 </body>
 </html>
