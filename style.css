@@ -173,7 +173,7 @@ a {
   max-width: 980px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 28px;
   padding: 68px 20px 84px;
 }
@@ -425,6 +425,98 @@ a {
   padding: 56px 20px;
 }
 
+.page-sportsbar .services {
+  padding: 52px 20px;
+}
+
+.page-sportsbar .info {
+  padding: 58px 20px;
+}
+
+.hero-sportsbar {
+  color: #fff;
+  text-align: center;
+  padding: 120px 20px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(rgba(7, 14, 18, 0.62), rgba(7, 14, 18, 0.68)),
+    url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-sportsbar h1 {
+  font-size: clamp(2.1rem, 6vw, 3.5rem);
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+.hero-sportsbar p {
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: clamp(1rem, 2.3vw, 1.18rem);
+}
+
+.sportsbar-intro {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 251, 255, 0.96));
+}
+
+.sportsbar-section .grid,
+.sportsbar-section .combo-grid,
+.sportsbar-section .two-col-info {
+  margin-top: 16px;
+}
+
+.sportsbar-menu-grid,
+.sportsbar-activity-grid,
+.sportsbar-event-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.sportsbar-menu-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.sportsbar-activity-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.sportsbar-event-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.sportsbar-menu-card strong,
+.activity-card strong {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--accent-strong);
+}
+
+.activity-card ul,
+.sportsbar-rules ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+}
+
+.activity-card li,
+.sportsbar-rules li {
+  margin-top: 6px;
+}
+
+.sportsbar-rules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.sportsbar-chat {
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f6f9fd 100%);
+}
+
 .kobra-section .grid,
 .kobra-section .combo-grid,
 .kobra-section .two-col-info {
@@ -539,7 +631,8 @@ a {
 @media (max-width: 640px) {
   .hero-landing,
   .hero-garage,
-  .hero-pizza {
+  .hero-pizza,
+  .hero-sportsbar {
     padding: 100px 16px;
   }
 
@@ -569,6 +662,15 @@ a {
   .page-kobra .services,
   .page-kobra .info {
     padding: 36px 16px;
+  }
+
+  .page-sportsbar .services,
+  .page-sportsbar .info {
+    padding: 38px 16px;
+  }
+
+  .sportsbar-rules {
+    grid-template-columns: 1fr;
   }
 
   .landing-card,
