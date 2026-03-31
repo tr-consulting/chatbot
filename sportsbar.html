@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T8 - Sportsbar O'Booker!</title>
-<link rel="stylesheet" href="style.css?v=20260319-3">
+<link rel="stylesheet" href="style.css?v=20260331-1">
 </head>
 
 <body class="page-sportsbar">
@@ -247,11 +247,14 @@
 </div>
 
 <div class="sportsbar-live-grid">
-<article class="info-panel live-panel">
+<article class="info-panel live-panel live-panel-bookings">
 <div class="panel-head">
 <h2>Kommande bokningar</h2>
 <span id="bookingsCount" class="panel-pill">Laddar...</span>
 </div>
+<p class="mobile-live-note">På mobil prioriterar vi lediga tider först. Öppna listan vid behov om du vill se kommande bokningar.</p>
+<button id="bookingsToggleButton" class="mobile-panel-toggle" type="button" aria-expanded="false" aria-controls="bookingsPanelContent">Visa bokningslistan</button>
+<div id="bookingsPanelContent" class="mobile-panel-content">
 <div class="table-wrap">
 <table class="live-table">
 <thead>
@@ -269,9 +272,10 @@
 </tbody>
 </table>
 </div>
+</div>
 </article>
 
-<article class="info-panel live-panel">
+<article class="info-panel live-panel live-panel-availability">
 <div class="panel-head">
 <h2>Lediga tider att sälja</h2>
 <span id="availabilityCount" class="panel-pill">Laddar...</span>
@@ -313,7 +317,8 @@
 </div>
 </section>
 
-<script src="sportsbar-live.js"></script>
+<script src="sportsbar-live.js?v=20260331-1"></script>
+<script src="chat-widget-layout.js?v=20260331-1"></script>
 <script type="text/javascript">
 !function(e,t,n,c,i,a,d){e.m8comContactWidgetName=i,e[i]=e[i]||function(){(e[i].commandQueue=e[i].commandQueue||[]).push(arguments)},e[i].initTs=1*new Date,a=t.createElement(n),d=t.getElementsByTagName(n)[0],a.async=1,a.src=c,a.id=i,d.parentNode.insertBefore(a,d)}(window,document,"script","https://m8com.app/webwidget/0b0914cf-2393-40e8-89c7-b319af19d0cf","m8comContactWidget");
   m8comContactWidget('init', { widgetId: '0b0914cf-2393-40e8-89c7-b319af19d0cf', darkMode: false });

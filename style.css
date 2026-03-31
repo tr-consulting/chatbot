@@ -29,6 +29,10 @@ body {
   color: var(--ink);
 }
 
+body.has-chat-widget {
+  padding-bottom: max(112px, calc(env(safe-area-inset-bottom, 0px) + 92px));
+}
+
 h1,
 h2,
 h3,
@@ -660,6 +664,20 @@ a {
   padding: 20px 10px;
 }
 
+.mobile-live-note,
+.mobile-panel-toggle {
+  display: none;
+}
+
+.mobile-panel-content.is-open {
+  display: block;
+}
+
+.mobile-panel-toggle:focus-visible {
+  outline: 3px solid #ffd37a;
+  outline-offset: 3px;
+}
+
 .availability-list {
   margin-top: 16px;
   display: grid;
@@ -962,6 +980,80 @@ a {
 
   .sportsbar-rules {
     grid-template-columns: 1fr;
+  }
+
+  .sportsbar-live-actions,
+  .panel-head {
+    align-items: stretch;
+  }
+
+  .sportsbar-live-actions {
+    justify-content: flex-start;
+  }
+
+  .refresh-button,
+  .api-status {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .live-panel-availability {
+    order: 1;
+  }
+
+  .live-panel-bookings {
+    order: 2;
+  }
+
+  .mobile-live-note {
+    display: block;
+    margin-top: 12px;
+    color: var(--ink-soft);
+  }
+
+  .mobile-panel-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #f8faff;
+    color: var(--ink);
+    padding: 12px 16px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .mobile-panel-toggle::after {
+    content: "▼";
+    margin-left: 10px;
+    font-size: 0.78rem;
+  }
+
+  .mobile-panel-toggle[aria-expanded="true"]::after {
+    content: "▲";
+  }
+
+  .mobile-panel-content {
+    display: none;
+  }
+
+  .mobile-panel-content.is-open {
+    margin-top: 12px;
+  }
+
+  .table-wrap {
+    margin-top: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .live-table {
+    min-width: 560px;
   }
 
   .availability-card {

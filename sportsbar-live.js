@@ -11,6 +11,8 @@ const availabilityCards = document.getElementById("availabilityCards");
 const availabilityCount = document.getElementById("availabilityCount");
 const apiStatus = document.getElementById("apiStatus");
 const refreshBookingsButton = document.getElementById("refreshBookingsButton");
+const bookingsToggleButton = document.getElementById("bookingsToggleButton");
+const bookingsPanelContent = document.getElementById("bookingsPanelContent");
 
 const resourceTypeLabels = {
   table: "Bord",
@@ -20,6 +22,23 @@ const resourceTypeLabels = {
   billiard: "Biljard",
   karaoke: "Karaoke",
 };
+
+function syncMobileBookingsPanel() {
+  if (!bookingsToggleButton || !bookingsPanelContent) {
+    return;
+  }
+
+  const isMobile = window.innerWidth <= 640;
+  const isOpen = bookingsToggleButton.getAttribute("aria-expanded") === "true";
+
+  if (!isMobile) {
+    bookingsPanelContent.classList.add("is-open");
+    bookingsToggleButton.setAttribute("aria-expanded", "false");
+    return;
+  }
+
+  bookingsPanelContent.classList.toggle("is-open", isOpen);
+}
 
 function formatDate(dateValue) {
   const date = new Date(`${dateValue}T12:00:00`);
@@ -186,7 +205,7 @@ function renderBookings(bookings) {
   bookingsCount.textContent = `${bookings.length} bokningar`;
 
   if (!bookings.length) {
-    bookingsTableBody.innerHTML = '<tr><td colspan="5" class="table-empty">Inga bokningar hittades ännu.</td></tr>';
+    bookingsTableBody.innerHTML = '<tr><td colspan="6" class="table-empty">Inga bokningar hittades ännu.</td></tr>';
     return;
   }
 
@@ -226,3 +245,12 @@ function renderAvailability(slots, resourceMap = null) {
 fetchBookingsAndAvailability();
 
 refreshBookingsButton?.addEventListener("click", fetchBookingsAndAvailability);
+
+bookingsToggleButton?.addEventListener("click", () => {
+  const isOpen = bookingsToggleButton.getAttribute("aria-expanded") === "true";
+  bookingsToggleButton.setAttribute("aria-expanded", String(!isOpen));
+  syncMobileBookingsPanel();
+});
+
+window.addEventListener("resize", syncMobileBookingsPanel);
+syncMobileBookingsPanel();
