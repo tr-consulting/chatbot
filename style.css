@@ -105,7 +105,8 @@ a {
 
 .hero-landing,
 .hero-garage,
-.hero-pizza {
+.hero-pizza,
+.hero-veterinar {
   color: #fff;
   text-align: center;
   padding: 120px 20px;
@@ -133,16 +134,27 @@ a {
   background-position: center;
 }
 
+.hero-veterinar {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.16), transparent 32%),
+    linear-gradient(rgba(13, 39, 48, 0.6), rgba(13, 39, 48, 0.72)),
+    url("https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
 .hero-landing h1,
 .hero-garage h1,
-.hero-pizza h1 {
+.hero-pizza h1,
+.hero-veterinar h1 {
   font-size: clamp(2rem, 6vw, 3.3rem);
   text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 .hero-landing p,
 .hero-garage p,
-.hero-pizza p {
+.hero-pizza p,
+.hero-veterinar p {
   margin-top: 14px;
   color: rgba(255, 255, 255, 0.92);
   font-size: clamp(1rem, 2.3vw, 1.2rem);
@@ -283,6 +295,25 @@ a {
 
 .page-pizza .rzhe4m::after {
   content: "🍕";
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.page-veterinar .rzhe4m svg {
+  display: none;
+}
+
+.page-veterinar .rzhe4m {
+  position: relative;
+  overflow: visible;
+}
+
+.page-veterinar .rzhe4m::after {
+  content: "🐾";
   font-size: 22px;
   display: flex;
   align-items: center;
@@ -435,6 +466,40 @@ a {
 
 .page-sportsbar .info {
   padding: 58px 20px;
+}
+
+.page-veterinar .services {
+  padding: 50px 20px;
+}
+
+.page-veterinar .info {
+  padding: 56px 20px;
+}
+
+.veterinar-intro {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 251, 250, 0.96));
+}
+
+.veterinar-section .grid,
+.veterinar-section .combo-grid,
+.veterinar-section .two-col-info {
+  margin-top: 16px;
+}
+
+.veterinar-chat {
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f2faf8 100%);
+}
+
+.veterinar-highlight-card strong {
+  display: inline-block;
+  margin-top: 10px;
+  color: #16636c;
+}
+
+.veterinar-data-grid .card {
+  border-top-color: #2c8d8f;
 }
 
 .hero-sportsbar {
@@ -934,7 +999,8 @@ a {
   .hero-landing,
   .hero-garage,
   .hero-pizza,
-  .hero-sportsbar {
+  .hero-sportsbar,
+  .hero-veterinar {
     padding: 100px 16px;
   }
 
@@ -975,6 +1041,11 @@ a {
 
   .page-sportsbar .services,
   .page-sportsbar .info {
+    padding: 38px 16px;
+  }
+
+  .page-veterinar .services,
+  .page-veterinar .info {
     padding: 38px 16px;
   }
 
