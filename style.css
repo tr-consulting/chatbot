@@ -502,6 +502,15 @@ a {
   border-top-color: #2c8d8f;
 }
 
+.veterinar-roadmap-lead {
+  text-align: center;
+}
+
+.veterinar-roadmap-grid .card {
+  border-top-color: #16636c;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fcfb 100%);
+}
+
 .hero-sportsbar {
   color: #fff;
   text-align: center;
