@@ -52,6 +52,28 @@ function formatDate(dateValue) {
   }).format(date);
 }
 
+function parseLocalDateTime(dateValue, timeValue = "00:00") {
+  if (!dateValue) {
+    return null;
+  }
+
+  const parsed = new Date(`${dateValue}T${timeValue || "00:00"}:00`);
+  if (Number.isNaN(parsed.getTime())) {
+    return null;
+  }
+
+  return parsed;
+}
+
+function isUpcoming(dateValue, timeValue = "00:00") {
+  const dateTime = parseLocalDateTime(dateValue, timeValue);
+  if (!dateTime) {
+    return false;
+  }
+
+  return dateTime.getTime() >= Date.now();
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -153,7 +175,7 @@ async function fetchLiveData() {
 
   const resourceMap = new Map(resources.map((resource) => [resource.resource_id, resource.name]));
   const confirmedBookings = bookings
-    .filter((booking) => booking.status === "confirmed")
+    .filter((booking) => booking.status === "confirmed" && isUpcoming(booking.date, booking.start_time))
     .sort((left, right) => `${left.date} ${left.start_time}`.localeCompare(`${right.date} ${right.start_time}`))
     .slice(0, 12)
     .map((booking) => ({
@@ -166,7 +188,7 @@ async function fetchLiveData() {
     }));
 
   const availableSlots = slots
-    .filter((slot) => slot.status === "available")
+    .filter((slot) => slot.status === "available" && isUpcoming(slot.date, slot.start_time))
     .sort((left, right) => `${left.date} ${left.start_time}`.localeCompare(`${right.date} ${right.start_time}`))
     .slice(0, 18)
     .map((slot) => ({
